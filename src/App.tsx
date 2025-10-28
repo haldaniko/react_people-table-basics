@@ -37,12 +37,10 @@ const PeoplePage: React.FC = () => {
           return;
         }
 
-        // Build a map by name to resolve parents
         const byName = new Map<string, Person>();
 
         loaded.forEach(p => byName.set(p.name, { ...p }));
 
-        // Attach parent references
         const withParents = loaded.map(p => {
           const person = byName.get(p.name)!;
 
@@ -139,20 +137,18 @@ const NavBar = () => (
 );
 
 export const App = () => (
-  <html className="has-navbar-fixed-top">
-    <div data-cy="app">
-      <NavBar />
-      <main className="section">
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/home" element={<Navigate to="/" replace />} />
-            <Route path="/people" element={<PeoplePage />} />
-            <Route path="/people/:slug" element={<PeoplePage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </main>
-    </div>
-  </html>
+  <div data-cy="app">
+    <NavBar />
+    <main className="section">
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="/people" element={<PeoplePage />} />
+          <Route path="/people/:slug" element={<PeoplePage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </main>
+  </div>
 );
